@@ -4,6 +4,7 @@ public class CalculadoraTeste
 {
     private CalculadoraImpementada _resultadoSoma;
     private NumerosPar _numeroPar;
+
     //Construtor da CalculadoraTest
     public CalculadoraTeste()
     {
@@ -29,6 +30,7 @@ public class CalculadoraTeste
         Assert.Equal(resultadoEsperado, resultadoSomaCalculadora);
     }
 
+    /*
     [Theory]
     [InlineData(24)]
     [InlineData(20)]
@@ -38,6 +40,7 @@ public class CalculadoraTeste
     [InlineData(12)]
     [InlineData(10)]
     [InlineData(17)]
+    
     public void DeveRetornarSeOsNumerosEpar(int numero)
     {
         //Quando usamos a notação [Theory] -> não precisamos do Arrange
@@ -47,5 +50,14 @@ public class CalculadoraTeste
 
         // Assert
         Assert.True(verificarNumerosPar);
+    }
+    */
+
+    //Refatorando nosso teste, passando um vetor como parametro
+    [Theory]
+    [InlineData(new int[] { 2, 10, 8, 14, 18, 16, 12, 28, 22 })]
+    public void DeveRetornarNumerosPar(int[] numero)
+    {
+        Assert.All(numero, num => Assert.True(_numeroPar.RetornarPar(num)));
     }
 }
